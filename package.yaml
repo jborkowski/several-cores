@@ -1,0 +1,50 @@
+name:                several-cores
+version:             0.1.0.0
+github:              "githubuser/several-cores"
+license:             BSD3
+author:              "Jonatan Borkowski"
+maintainer:          "jonatan.borkowski@pm.me"
+copyright:           "2019 Jonatan Borkowski"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/jborkowski/several-cores#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- monad-par
+- deepseq
+- stm
+- random
+- network
+- amqp
+- conduit
+- amqp-worker
+- aeson
+
+library:
+  source-dirs: src
+
+executables:
+  several-cores-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - several-cores
+
+tests:
+  several-cores-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - several-cores
